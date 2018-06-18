@@ -85,13 +85,13 @@ class LoginPage: UIViewController {
         while(sqlite3_step(stmt) == SQLITE_ROW){
             let id = sqlite3_column_int(stmt, 0)
             let userName = String(cString: sqlite3_column_text(stmt, 1))
-            //let passWord = String(cString: sqlite3_column_text(stmt, 2))
+            let passWord = String(cString: sqlite3_column_text(stmt, 2))
             
             print("userName: "+userName)
-            //print("password: "+passWord)
+            print("password: "+passWord)
             
             //adding values to list
-            //userList.append(User(id: Int(id), userName: String(describing: userName), passWord: String(describing: passWord)))
+            userList.append(User(id: Int(id), userName: String(describing: userName), passWord: String(describing: passWord)))
             
             //print(userList[userList.count-1])
             

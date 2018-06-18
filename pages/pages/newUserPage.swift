@@ -9,6 +9,9 @@
 import UIKit
 import SQLite3
 
+internal let SQLITE_STATIC = unsafeBitCast(0, to: sqlite3_destructor_type.self)
+internal let SQLITE_TRANSIENT = unsafeBitCast(-1, to: sqlite3_destructor_type.self)
+
 
 class newUserPage: UIViewController {
     
@@ -92,8 +95,10 @@ class newUserPage: UIViewController {
             return
         }
         
+        
+        
         //binding the parameters
-        if sqlite3_bind_text(stmt, 1, userName, -1, nil) != SQLITE_OK{
+        if sqlite3_bind_text(stmt, 1, userName, -1, SQLITE_TRANSIENT) != SQLITE_OK{
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("failure binding name: \(errmsg)")
             return
@@ -102,7 +107,7 @@ class newUserPage: UIViewController {
         
         
         
-        if sqlite3_bind_text(stmt, 2, passWord, -1, nil) != SQLITE_OK{
+        if sqlite3_bind_text(stmt, 2, passWord, -1, SQLITE_TRANSIENT) != SQLITE_OK{
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("failure binding name: \(errmsg)")
             return
