@@ -15,10 +15,18 @@ class LoginPage: UIViewController {
     
     var db: OpaquePointer?
     
+    var validCredentials = false
+    
     //var userNameInput : String = ""
     var userList = [User]()
 
     @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,12 +60,13 @@ class LoginPage: UIViewController {
     @IBAction func loginButton(_ sender: Any) {
         
         let input = userNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let passwordInput = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
         
         for person in userList {
             
-            if person.userName == input{
+            if person.userName == input && person.passWord == passwordInput{
+                validCredentials = true
                 performSegue(withIdentifier: "login", sender: self)
-                
             }
         }
     }
@@ -86,9 +95,11 @@ class LoginPage: UIViewController {
             let id = sqlite3_column_int(stmt, 0)
             let userName = String(cString: sqlite3_column_text(stmt, 1))
             let passWord = String(cString: sqlite3_column_text(stmt, 2))
+            let points = sqlite3_column_int(stmt, 3)
             
             print("userName: "+userName)
             print("password: "+passWord)
+            print("points: "+String(points))
             
             //adding values to list
             userList.append(User(id: Int(id), userName: String(describing: userName), passWord: String(describing: passWord)))
@@ -100,16 +111,6 @@ class LoginPage: UIViewController {
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     

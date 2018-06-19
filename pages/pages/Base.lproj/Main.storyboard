@@ -91,7 +91,6 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="loginButton:" destination="Nr7-iL-rje" eventType="touchUpInside" id="M1b-aL-k1v"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="login" id="HYb-Hb-S2Y"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OSs-ia-rCh">
@@ -115,7 +114,9 @@
                         <viewLayoutGuide key="safeArea" id="vTh-0Z-EA1"/>
                     </view>
                     <connections>
+                        <outlet property="passwordTextField" destination="nOR-he-GFf" id="tx5-Sz-W8R"/>
                         <outlet property="userNameTextField" destination="gEp-WI-rvd" id="8sT-1g-3f3"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="login" id="wbk-BF-tzv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vul-KB-eK7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -263,6 +264,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="HYb-Hb-S2Y"/>
+        <segue reference="wbk-BF-tzv"/>
     </inferredMetricsTieBreakers>
 </document>

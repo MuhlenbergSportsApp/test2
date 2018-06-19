@@ -39,7 +39,7 @@ class newUserPage: UIViewController {
             print("error opening database")
         }
         
-        if sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS userTable (id INTEGER PRIMARY KEY AUTOINCREMENT, userName TEXT, passWord TEXT)", nil, nil, nil) != SQLITE_OK {
+        if sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS userTable (id INTEGER PRIMARY KEY AUTOINCREMENT, userName TEXT, passWord TEXT, points INTGEGER)", nil, nil, nil) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error creating table: \(errmsg)")
         }
@@ -86,7 +86,7 @@ class newUserPage: UIViewController {
         
         
         //the insert query
-        let queryString = "INSERT INTO userTable (userName, passWord) VALUES (?,?)"
+        let queryString = "INSERT INTO userTable (userName, passWord, points) VALUES (?,?,0)"
         
         //preparing the query
         if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
